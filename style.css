@@ -40,3 +40,11 @@ pre {
 	display: inline-flex;
 	min-width: 600px;
 }
+
+a {
+	color: #44c;
+}
+
+a:active {
+	color: #f00;
+}

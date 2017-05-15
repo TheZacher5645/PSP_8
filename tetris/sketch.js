@@ -1,3 +1,6 @@
+// Code by Zander Stolfi
+// http://github.com/TheZacher5645
+
 var vscale = 16;
 
 var pieces = [
@@ -209,6 +212,7 @@ function place(piece) {
 			}
 		}
 		player = new Piece(nextType.typeNumber);
+		statValues[player.typeNumber]++;
 		nextType = new Piece();
 		nextType.x = 2 - nextType.type.length/2;
 		if (nextType.typeNumber != 3) {
@@ -244,12 +248,48 @@ var nPC;
 function setup() {
 	var canvas = createCanvas(vscale*10, vscale*20);
 	canvas.parent("#playArea");
+	
 	nPG = createGraphics(64, 64);
 	nPC = document.body.getElementsByTagName("CANVAS")[1];
-	nPC.style.display = "initial";
-	document.getElementById("nextPiece").appendChild(nPC)
+	nPC.style.display = "inline";
+	document.getElementById("nextPiece").appendChild(nPC);
+
+	sG = createGraphics(48, 236);
+	sC = document.body.getElementsByTagName("CANVAS")[2];
+	sC.style.display = "inline";
+	document.getElementById("statsPieces").appendChild(sC);
+	statPieces = [];
+	statValues = [];
+
+	for (var i = 0; i < pieces.length; i++) {
+		var piece = new Piece(i);
+		piece.x = 0.5;
+		if (i == 0) {
+			piece.y = -0.5;
+		} else if (i == 1) {
+			piece.y = 2.25;
+		} else if (i == 2) {
+			piece.y = 5;
+		} else if (i == 3) {
+			piece.x = 1;
+			piece.y = 8.75;
+		} else if (i == 4) {
+			piece.y = 10.5;
+		} else if (i == 5) {
+			piece.y = 13.5;
+		} else if (i == 6) {
+			piece.x = 0;
+			piece.y = 15.5;
+		}
+
+		statPieces.push(piece);
+		statValues.push(0);
+	}
+
 	player = new Piece();
+	statValues[player.typeNumber]++;
 	nextType = new Piece();
+
 	nextType.x = 2 - nextType.type.length/2;
 	if (nextType.typeNumber != 3) {
 		nextType.y = 2 - ceil(nextType.type.length/2);
@@ -390,10 +430,18 @@ function draw() {
 	nPG.background(0);
 	nextType.show(nPG);
 
-	select("#lines").html(nf(totalLines, 3, 0).toString());
-	select("#score").html(nf(score, 6, 0).toString());
-	select("#level").html(nf(level, 2, 0).toString());
+	sG.background(0);
+	for (var i = 0; i < statPieces.length; i++) {
+		statPieces[i].show(sG);
+	}
+
+	select("#lines").html(nf(totalLines, 3, 0));
+	select("#score").html(nf(score, 6, 0));
+	select("#level").html(nf(level, 2, 0));
 	select("#top").html(nf(localStorage.highScore, 6, 0));
+	for (var i = 0; i < statValues.length; i++) {
+		select("#statsCount-"+ i).html(nf(statValues[i], 3, 0));
+	}
 
 	player.collide();
 	stroke(0);

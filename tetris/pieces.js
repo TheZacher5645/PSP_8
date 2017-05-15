@@ -39,9 +39,12 @@ function Piece(typeNumber) {
 					stroke(0,0,0);
 					if (canvas == undefined) {
 						rect(this.x*vscale + x*vscale, this.y*vscale + y*vscale, vscale-1, vscale-1);
-					} else {
+					} else if (canvas == nPG) {
 						canvas.fill(color[0], color[1], color[2]);
 						canvas.rect(this.x*vscale + x*vscale, this.y*vscale + y*vscale, vscale-1, vscale-1);
+					} else if (canvas == sG) {
+						canvas.fill(color[0], color[1], color[2]);
+						canvas.rect(this.x*12 + x*12, this.y*12 + y*12, 12-1, 12-1);
 					}
 				}
 			}
