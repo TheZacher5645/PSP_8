@@ -191,6 +191,7 @@ function pileCollide(piece) {
 					console.log(piece.y + y);
 					collision = false;
 				}
+				console.log(pile[piece.x + x][piece.y + y] != undefined);
 				if (pile[piece.x + x][piece.y + y] != 0 || pile[piece.x + x][piece.y + y] != undefined) {
 					collision = true;
 				}
