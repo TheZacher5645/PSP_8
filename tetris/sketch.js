@@ -448,7 +448,9 @@ function draw() {
 	player.show();
 	player.new = false;
 	
-	lsScore("s")
+	if (score > localStorage.highScore) {
+		lsScore("s")
+	}
 
 	if (gameOver) {
 		textSize(24);
