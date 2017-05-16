@@ -187,13 +187,12 @@ function pileCollide(piece) {
 	for (var x = 0; x < type.length; x++) {
 		for (var y = 0; y < type[x].length; y++) {
 			if (type[y][x] != 0 && piece.x + x < 10 && piece.x + x >= 0) {
-				if (pile[piece.x + x][piece.y + y] != undefined) {
-					if (pile[piece.x + x][piece.y + y] != 0) {
-						collision = true;
-					}
+				if (pile[piece.x + x][piece.y + y] != 0) {
+					collision = true;
 				}
-			} else {
-				collision = false;
+				if (piece.y + y > 0) {
+					collision = false;
+				}
 			}	
 		}
 	}
@@ -449,10 +448,6 @@ function draw() {
 	showPile();
 	player.show();
 	player.new = false;
-	
-	if (score > localStorage.highScore) {
-		lsScore("s")
-	}
 
 	if (gameOver) {
 		textSize(24);
@@ -462,9 +457,9 @@ function draw() {
 		strokeWeight(8);
 		text("Game Over", 0, 0, width, height);
 
-		//if (fGameOver && score > localStorage.highScore) {
-		//	lsScore("s")
-		//}
+		if (fGameOver && score > localStorage.highScore) {
+			lsScore("s")
+		}
 
 		fGameOver = false;
 	}
