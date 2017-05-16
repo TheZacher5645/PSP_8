@@ -447,6 +447,8 @@ function draw() {
 	showPile();
 	player.show();
 	player.new = false;
+	
+	lsScore("s")
 
 	if (gameOver) {
 		textSize(24);
@@ -456,9 +458,9 @@ function draw() {
 		strokeWeight(8);
 		text("Game Over", 0, 0, width, height);
 
-		if (fGameOver && score > localStorage.highScore) {
-			lsScore("s")
-		}
+		//if (fGameOver && score > localStorage.highScore) {
+		//	lsScore("s")
+		//}
 
 		fGameOver = false;
 	}
