@@ -191,9 +191,9 @@ function pileCollide(piece) {
 					if (pile[piece.x + x][piece.y + y] != 0) {
 						collision = true;
 					}
-				} else {
-					collision = false;
 				}
+			} else {
+				collision = false;
 			}	
 		}
 	}
