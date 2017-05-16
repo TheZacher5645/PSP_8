@@ -188,6 +188,7 @@ function pileCollide(piece) {
 		for (var y = 0; y < type[x].length; y++) {
 			if (type[y][x] != 0 && piece.x + x < 10 && piece.x + x >= 0) {
 				if (piece.y + y < 0) {
+					console.log(piece.y + y);
 					collision = false;
 				}
 				if (pile[piece.x + x][piece.y + y] != 0) {
