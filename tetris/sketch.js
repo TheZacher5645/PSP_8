@@ -190,7 +190,7 @@ function pileCollide(piece) {
 				if (piece.y < 0) {
 					collision = false
 				}
-				if (pile[piece.x + x][piece.y + y] != 0) {
+				if (pile[piece.x + x][piece.y + y] > 0) {
 					collision = true;
 					// console.log("collision!");
 				}
