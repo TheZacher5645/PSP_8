@@ -83,10 +83,10 @@ canvas {
 	margin: 0 auto;
 }
 
-.window > tr {
+.window > tbody > tr {
 	height: 16px;
 }
 
-.window > tr > td {
+.window > tbody > tr > td {
 	width: 16px;
 }
