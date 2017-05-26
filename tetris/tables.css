@@ -1,0 +1,92 @@
+canvas {
+	vertical-align: top;
+}
+
+#playArea {
+	border: solid #000 1px;
+	width: 160px;
+	height: 320px;
+}
+
+#nextPiece {
+	width: 64px;
+	height: 64px;
+	border: solid #000 1px;
+}
+
+#warning {
+	text-align: center;
+	display: none;
+}
+
+.window {
+	border: solid #000 2px;
+	margin: auto;
+	width: 512px;
+	height: 448px;
+	background: #999;
+}
+
+.window p {
+	margin: 0;
+	font-size: 16px;
+	color: #fff;
+	background-color: #000;
+	height: 16px;
+	text-align: center;
+	font-weight: bold;
+	letter-spacing: 2px;
+}
+
+.big {
+	border: solid #000 2px;
+	padding: 4px;
+	background: #666;
+	display: inline-flex;
+	border-radius: 8px;
+	position: relative;
+}
+
+.bigInner {
+	border: solid #000 2px;
+	padding: 7px;
+	background: #bee;
+	display: inline-flex;
+	border-radius: 5px;
+}
+
+.small {
+	border: solid #000 2px;
+	padding: 4px;
+	background: #666;
+	display: inline-flex;
+	border-radius: 12px;
+	position: relative;
+}
+
+.smallInner {
+	display: inline-flex;
+	border: solid #000 2px;
+	padding: 2px;
+	background: #bee;
+	border-radius: 5px;
+}
+
+.window td {
+	padding: 0;
+	width: 48px;
+	height: 32px;
+}
+
+.window table {
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+
+.window > tr {
+  height: 16px;
+}
+
+.window > tr > td { 
+  width: 16px;
+}
