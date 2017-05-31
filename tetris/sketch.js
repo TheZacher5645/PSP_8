@@ -1,7 +1,14 @@
 // Code by Zander Stolfi
 // http://github.com/TheZacher5645
 
+
+
 var vscale = 16;
+
+window.addEventListener("keydown", function(e) {
+        e.preventDefault();
+    }
+});
 
 var pieces = [
 	[[0,0,0],
