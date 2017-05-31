@@ -257,6 +257,33 @@ function setup() {
 	var canvas = createCanvas(vscale*10, vscale*20);
 	canvas.parent("#playArea");
 	
+	var player;
+	var timeCount = 0;
+	var timeInterval;
+	var holdTimer = 0;
+	var holdInterval = 10;
+	var holdKey = null;
+	var keyHeld = false;
+	var gameOver = false;
+	var nextType;
+	var totalLines = 0;
+	var score = 0;
+	var prevLines = 0;
+	var curLines = 0;
+	var nClearLines = 0;
+	var level = 0;
+	var softDrop = false
+	var pDown = false;
+	var dropScore = 0;
+	var fGameOver = false;
+	var pile = [];
+	for(var x = 0; x < 10; x++) {
+		pile[x] = [];
+		for(var y = 0; y < 20; y++) {
+			pile[x][y] = 0;
+		}
+	}
+	
 	nPG = createGraphics(64, 64);
 	nPC = document.body.getElementsByTagName("CANVAS")[1];
 	nPC.style.display = "inline";
