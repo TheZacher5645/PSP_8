@@ -1,251 +1,251 @@
 // Code by Zander Stolfi
 // http://github.com/TheZacher5645
 
-var vscale = 16;
+function setup() {
+	var vscale = 16;
 
-var pieces = [
-	[[0,0,0],
-	 [1,1,1],
-	 [0,1,0]],
-
-	[[0,0,0],
-	 [2,2,2],
-	 [0,0,2]],
-
-	[
+	var pieces = [
 		[[0,0,0],
-		 [3,3,0],
-		 [0,3,3]],
+		 [1,1,1],
+		 [0,1,0]],
+
+		[[0,0,0],
+		 [2,2,2],
+		 [0,0,2]],
+
+		[
+			[[0,0,0],
+			 [3,3,0],
+			 [0,3,3]],
 		 
-		[[0,0,3],
-		 [0,3,3],
-		 [0,3,0]]
-	 ],
+			[[0,0,3],
+			 [0,3,3],
+			 [0,3,0]]
+		 ],
 
-	[[1,1],
-	 [1,1]],
+		[[1,1],
+		 [1,1]],
 
-	[
+		[
+			[[0,0,0],
+			 [0,2,2],
+			 [2,2,0]],
+
+			[[0,2,0],
+			 [0,2,2],
+			 [0,0,2]]
+		],
+
 		[[0,0,0],
-		 [0,2,2],
-		 [2,2,0]],
+		 [3,3,3],
+		 [3,0,0]],
 
-		[[0,2,0],
-		 [0,2,2],
-		 [0,0,2]]
-	],
+		[
+			[[0,0,0,0],
+			 [0,0,0,0],
+			 [1,1,1,1],
+			 [0,0,0,0]],
 
-	[[0,0,0],
-	 [3,3,3],
-	 [3,0,0]],
-
-	[
-		[[0,0,0,0],
-		 [0,0,0,0],
-		 [1,1,1,1],
-		 [0,0,0,0]],
-
-		[[0,0,1,0],
-		 [0,0,1,0],
-		 [0,0,1,0],
-		 [0,0,1,0]]
-	]
-];
-var player;
-var timeCount = 0;
-var timeInterval;
-var holdTimer = 0;
-var holdInterval = 10;
-var holdKey = null;
-var keyHeld = false;
-var gameOver = false;
-var nextType;
-var totalLines = 0;
-var score = 0;
-var prevLines = 0;
-var curLines = 0;
-var nClearLines = 0;
-var level = 0;
-var softDrop = false
-var pDown = false;
-var dropScore = 0;
-var fGameOver = false;
-var pile = [];
-for(var x = 0; x < 10; x++) {
-	pile[x] = [];
-	for(var y = 0; y < 20; y++) {
-		pile[x][y] = 0;
+			[[0,0,1,0],
+			 [0,0,1,0],
+			 [0,0,1,0],
+			 [0,0,1,0]]
+		]
+	];
+	var player;
+	var timeCount = 0;
+	var timeInterval;
+	var holdTimer = 0;
+	var holdInterval = 10;
+	var holdKey = null;
+	var keyHeld = false;
+	var gameOver = false;
+	var nextType;
+	var totalLines = 0;
+	var score = 0;
+	var prevLines = 0;
+	var curLines = 0;
+	var nClearLines = 0;
+	var level = 0;
+	var softDrop = false
+	var pDown = false;
+	var dropScore = 0;
+	var fGameOver = false;
+	var pile = [];
+	for(var x = 0; x < 10; x++) {
+		pile[x] = [];
+		for(var y = 0; y < 20; y++) {
+			pile[x][y] = 0;
+		}
 	}
-}
-//pile[7][8] = 1;
+	//pile[7][8] = 1;
+	
+	// for (var i = 0; i < 9; i++) {
+	// 	for (var j = 16; j < 20; j++) {
+	// 		pile[i][j] = 1;
+	// 	}
+	// }
 
-// for (var i = 0; i < 9; i++) {
-// 	for (var j = 16; j < 20; j++) {
-// 		pile[i][j] = 1;
-// 	}
-// }
-
-var colors = [
+	var colors = [
 	[[255,255,255],
-	 [66,64,255],
-	 [100,176,255]],
+		 [66,64,255],
+		 [100,176,255]],
 
-	[[255,255,255],
-	 [13,147,0],
-	 [136,216,0]],
+		[[255,255,255],
+		 [13,147,0],
+		 [136,216,0]],
 
-	[[255,255,255],
-	 [160,26,204],
-	 [242,106,255]],
+		[[255,255,255],
+		 [160,26,204],
+		 [242,106,255]],
 
-	[[255,255,255],
-	 [66,64,255],
-	 [92,228,48]],
+		[[255,255,255],
+		 [66,64,255],
+		 [92,228,48]],
 
-	[[255,255,255],
-	 [183,30,123],
-	 [69,224,130]],
+		[[255,255,255],
+		 [183,30,123],
+		 [69,224,130]],
 
-	[[255,255,255],
-	 [69,224,130],
-	 [146,144,255]],
+		[[255,255,255],
+		 [69,224,130],
+		 [146,144,255]],
 
-	[[255,255,255],
-	 [181,49,32],
-	 [102,102,102]],
+		[[255,255,255],
+		 [181,49,32],
+		 [102,102,102]],
 
-	[[255,255,255],
-	 [117,39,254],
-	 [110,0,64]],
+		[[255,255,255],
+		 [117,39,254],
+		 [110,0,64]],
 
-	[[255,255,255],
-	 [66,64,255],
-	 [181,49,32]],
+		[[255,255,255],
+		 [66,64,255],
+		 [181,49,32]],
 
-	[[255,255,255],
-	 [181,49,32],
-	 [234,158,34]]
-];
+		[[255,255,255],
+		 [181,49,32],
+		 [234,158,34]]
+	];
 
-function showPile() {
-	for (var x = 0; x < pile.length; x++) {
-		for (var y = 0; y < pile[x].length; y++) {
-			if (pile[x][y] != 0) {
-				var color = colors[level % 10][pile[x][y]-1];
-				stroke(0,0,0);
-				fill(color[0], color[1], color[2]);
-				rect(x*vscale, y*vscale, vscale-1, vscale-1);
+	function showPile() {
+		for (var x = 0; x < pile.length; x++) {
+			for (var y = 0; y < pile[x].length; y++) {
+				if (pile[x][y] != 0) {
+					var color = colors[level % 10][pile[x][y]-1];
+					stroke(0,0,0);
+					fill(color[0], color[1], color[2]);
+					rect(x*vscale, y*vscale, vscale-1, vscale-1);
+				}
 			}
 		}
 	}
-}
 
-function fullRows() {
-	var rows = [];
-	for (var x = 0; x < pile[0].length; x++) {
-		var clear = true;
-		for (var y = 0; y < pile.length; y++) {
-			if (pile[y][x] == 0) {
-				clear = false;
+	function fullRows() {
+		var rows = [];
+		for (var x = 0; x < pile[0].length; x++) {
+			var clear = true;
+			for (var y = 0; y < pile.length; y++) {
+				if (pile[y][x] == 0) {
+					clear = false;
+				}
+			}
+			if (clear) {
+				rows.push(x);
 			}
 		}
-		if (clear) {
-			rows.push(x);
+		return rows;
+	}
+
+	function removeRow(row) {
+		for (var i = 0; i < 10; i++) {
+			pile[i].splice(row, 1);
+			pile[i].unshift(0);
 		}
 	}
-	return rows;
-}
 
-function removeRow(row) {
-	for (var i = 0; i < 10; i++) {
-		pile[i].splice(row, 1);
-		pile[i].unshift(0);
-	}
-}
-
-function colliding(piece) {
-	var type = piece.type;
-	var collision = false;
-	for (var x = 0; x < type[0].length; x++) {
-		for (var y = 0; y < type.length; y++) {
-			if (type[y][x] != 0) {
-				if (piece.x + x < 0) {
-					collision = true;
-				}
-				if (piece.x + x >= 10) {
-					collision = true;
-				}
-			}	
+	function colliding(piece) {
+		var type = piece.type;
+		var collision = false;
+		for (var x = 0; x < type[0].length; x++) {
+			for (var y = 0; y < type.length; y++) {
+				if (type[y][x] != 0) {
+					if (piece.x + x < 0) {
+						collision = true;
+					}
+					if (piece.x + x >= 10) {
+						collision = true;
+					}
+				}	
+			}
 		}
+		return collision;
 	}
-	return collision;
-}
 
-function pileCollide(piece) {
-	var type = piece.type;
-	var collision = false;
-	for (var x = 0; x < type.length; x++) {
-		for (var y = 0; y < type[x].length; y++) {
-			if (type[y][x] != 0 && piece.x + x < 10 && piece.x + x >= 0) {
-				if (piece.y < 0) {
-					collision = false
-				}
-				if (pile[piece.x + x][piece.y + y] != 0) {
-					collision = true;
-					// console.log("collision!");
-				}
-			}	
+	function pileCollide(piece) {
+		var type = piece.type;
+		var collision = false;
+		for (var x = 0; x < type.length; x++) {
+			for (var y = 0; y < type[x].length; y++) {
+				if (type[y][x] != 0 && piece.x + x < 10 && piece.x + x >= 0) {
+					if (piece.y < 0) {
+						collision = false
+					}
+					if (pile[piece.x + x][piece.y + y] != 0) {
+						collision = true;
+						// console.log("collision!");
+					}
+				}	
+			}
 		}
+		return collision;
 	}
-	return collision;
-}
 
-function place(piece) {
-	if (!gameOver) {
-		for (var x = piece.x; x < piece.x + piece.type.length; x++) {
-			for (var y = piece.y; y < piece.y + piece.type[x-piece.x].length; y++) {
-				if (piece.type[y-piece.y][x-piece.x] != 0) {
-					if (x < 10) {
-						pile[x][y-1] = piece.type[y-piece.y][x-piece.x];
+	function place(piece) {
+		if (!gameOver) {
+			for (var x = piece.x; x < piece.x + piece.type.length; x++) {
+				for (var y = piece.y; y < piece.y + piece.type[x-piece.x].length; y++) {
+					if (piece.type[y-piece.y][x-piece.x] != 0) {
+						if (x < 10) {
+							pile[x][y-1] = piece.type[y-piece.y][x-piece.x];
+						}
 					}
 				}
 			}
-		}
-		player = new Piece(nextType.typeNumber);
-		statValues[player.typeNumber]++;
-		nextType = new Piece();
-		nextType.x = 2 - nextType.type.length/2;
-		if (nextType.typeNumber != 3) {
-			nextType.y = 2 - ceil(nextType.type.length/2);
-		} else {
-			nextType.y = 2 - nextType.type.length/2;
-		}
-		if (nextType.typeNumber == 6) {
-			nextType.y -= 0.5
-		}
-		holdTimer = 0;
-		score += dropScore;
-	}
-}
-
-function stop() {
-	player.type = [0];
-}
-
-function lsScore(ls) {
-	if (typeof(Storage) != "undefined") {	
-		if (ls == "s") {
-			localStorage.highScore = score;
-		} else if (ls == "l") {
-			return localStorage.highScore;
+			player = new Piece(nextType.typeNumber);
+			statValues[player.typeNumber]++;
+			nextType = new Piece();
+			nextType.x = 2 - nextType.type.length/2;
+			if (nextType.typeNumber != 3) {
+				nextType.y = 2 - ceil(nextType.type.length/2);
+			} else {
+				nextType.y = 2 - nextType.type.length/2;
+			}
+			if (nextType.typeNumber == 6) {
+				nextType.y -= 0.5
+			}
+			holdTimer = 0;
+			score += dropScore;
 		}
 	}
-}
 
-var nPG;
-var nPC;
+	function stop() {
+		player.type = [0];
+	}
 
-function setup() {
+	function lsScore(ls) {
+		if (typeof(Storage) != "undefined") {	
+			if (ls == "s") {
+				localStorage.highScore = score;
+			} else if (ls == "l") {
+				return localStorage.highScore;
+			}
+		}
+	}
+
+	var nPG;
+	var nPC;
+
 	var canvas = createCanvas(vscale*10, vscale*20);
 	canvas.parent("#playArea");
 	
