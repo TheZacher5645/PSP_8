@@ -257,7 +257,6 @@ function setup() {
 	var canvas = createCanvas(vscale*10, vscale*20);
 	canvas.parent("#playArea");
 	
-	var player;
 	var timeCount = 0;
 	var timeInterval;
 	var holdTimer = 0;
@@ -276,7 +275,6 @@ function setup() {
 	var pDown = false;
 	var dropScore = 0;
 	var fGameOver = false;
-	var pile = [];
 	for(var x = 0; x < 10; x++) {
 		pile[x] = [];
 		for(var y = 0; y < 20; y++) {
