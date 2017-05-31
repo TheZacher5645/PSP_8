@@ -264,6 +264,7 @@ function setup() {
 	var holdKey = null;
 	var keyHeld = false;
 	var gameOver = false;
+	nextType;
 	nextType = new Piece();
 	nextType.x = 2 - nextType.type.length/2;
 	if (nextType.typeNumber != 3) {
