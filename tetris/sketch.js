@@ -51,7 +51,7 @@ var pieces = [
 ];
 
 var gameOver;
-var totalLines;
+var totalLines = 0;
 
 function setup() {
 	var vscale = 16;
