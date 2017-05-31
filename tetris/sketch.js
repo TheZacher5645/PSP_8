@@ -264,7 +264,6 @@ function setup() {
 	var holdKey = null;
 	var keyHeld = false;
 	var gameOver = false;
-	var nextType;
 	var totalLines = 0;
 	var score = 0;
 	var prevLines = 0;
