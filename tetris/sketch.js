@@ -265,16 +265,6 @@ function setup() {
 	var keyHeld = false;
 	var gameOver = false;
 	nextType = null;
-	nextType = new Piece();
-	nextType.x = 2 - nextType.type.length/2;
-	if (nextType.typeNumber != 3) {
-		nextType.y = 2 - ceil(nextType.type.length/2);
-	} else {
-		nextType.y = 2 - nextType.type.length/2;
-	}
-	if (nextType.typeNumber == 6) {
-		nextType.y -= 0.5
-	}
 	var totalLines = 0;
 	var score = 0;
 	var prevLines = 0;
