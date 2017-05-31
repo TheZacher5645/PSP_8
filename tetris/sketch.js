@@ -1,6 +1,9 @@
 // Code by Zander Stolfi
 // http://github.com/TheZacher5645
 
+var pieces;
+var gameOver
+
 function setup() {
 	var vscale = 16;
 
