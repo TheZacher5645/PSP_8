@@ -53,6 +53,16 @@ var pieces = [
 var gameOver;
 var totalLines = 0;
 
+function lsScore(ls) {
+	if (typeof(Storage) != "undefined") {	
+		if (ls == "s") {
+			localStorage.highScore = score;
+		} else if (ls == "l") {
+			return localStorage.highScore;
+		}
+	}
+}
+
 function setup() {
 	var vscale = 16;
 	var player;
@@ -234,16 +244,6 @@ function setup() {
 
 	function stop() {
 		player.type = [0];
-	}
-
-	function lsScore(ls) {
-		if (typeof(Storage) != "undefined") {	
-			if (ls == "s") {
-				localStorage.highScore = score;
-			} else if (ls == "l") {
-				return localStorage.highScore;
-			}
-		}
 	}
 
 	var nPG;
