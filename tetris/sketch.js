@@ -2,12 +2,12 @@
 // http://github.com/TheZacher5645
 
 var pieces;
-var gameOver
+var gameOver;
 
 function setup() {
 	var vscale = 16;
 
-	var pieces = [
+	pieces = [
 		[[0,0,0],
 		 [1,1,1],
 		 [0,1,0]],
