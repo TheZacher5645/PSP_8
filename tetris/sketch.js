@@ -5,9 +5,10 @@
 
 var vscale = 16;
 
-window.addEventListener("keydown", function(e) {
-        e.preventDefault();
-    }
+window.addEventListener("keydown", function(k) {
+	if (k.keyCode == 38 or k.keyCode == 40) {
+		k.preventDefault();
+	}
 });
 
 var pieces = [
