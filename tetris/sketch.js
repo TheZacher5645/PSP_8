@@ -6,7 +6,7 @@
 var vscale = 16;
 
 window.addEventListener("keydown", function(k) {
-	if (k.keyCode == 38 or k.keyCode == 40) {
+	if (k.keyCode == 38 || k.keyCode == 40) {
 		k.preventDefault();
 	}
 });
