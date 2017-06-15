@@ -1,15 +1,7 @@
 // Code by Zander Stolfi
 // http://github.com/TheZacher5645
 
-
-
 var vscale = 16;
-
-window.addEventListener("keydown", function(k) {
-	if (k.keyCode == 38 || k.keyCode == 40) {
-		k.preventDefault();
-	}
-});
 
 var pieces = [
 	[[0,0,0],
@@ -256,31 +248,6 @@ var nPC;
 function setup() {
 	var canvas = createCanvas(vscale*10, vscale*20);
 	canvas.parent("#playArea");
-	
-	var timeCount = 0;
-	var timeInterval;
-	var holdTimer = 0;
-	var holdInterval = 10;
-	var holdKey = null;
-	var keyHeld = false;
-	var gameOver = false;
-	nextType = null;
-	var totalLines = 0;
-	var score = 0;
-	var prevLines = 0;
-	var curLines = 0;
-	var nClearLines = 0;
-	var level = 0;
-	var softDrop = false
-	var pDown = false;
-	var dropScore = 0;
-	var fGameOver = false;
-	for(var x = 0; x < 10; x++) {
-		pile[x] = [];
-		for(var y = 0; y < 20; y++) {
-			pile[x][y] = 0;
-		}
-	}
 	
 	nPG = createGraphics(64, 64);
 	nPC = document.body.getElementsByTagName("CANVAS")[1];
